@@ -1,0 +1,11 @@
+package user;
+
+public class User {
+	private string userID;
+	private string userPassword;
+	private string userName;
+	private string userGender;
+	private string userEmail;
+	
+	
+}
