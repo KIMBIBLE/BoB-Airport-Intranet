@@ -52,16 +52,21 @@ public class BbsDAO {
 		return -1; // 데이터베이스 오류
 	}
 	
-	public int write(String bbsTitle, String userID, String bbsContent) {
-		String SQL = "INSERT INTO BBS VALUES(?, ?, ?, ?, ?, ?)";
+	public int write(String bbsTitle, String userID, String bbsContent, String bbsFileName, String bbsFilePath) {
+		String SQL = "INSERT INTO BBS VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+		//String SQL = "INSERT INTO BBS VALUES(" + getNext() + ", " + bbsTitle + ", " + userID + ", " + getDate() + ", " + bbsContent + ", " + 1 + ", " + bbsFileName + ", " + bbsFilePath + ")";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			
 			pstmt.setInt(1, getNext());
 			pstmt.setString(2, bbsTitle);
 			pstmt.setString(3, userID);
 			pstmt.setString(4, getDate());
 			pstmt.setString(5, bbsContent);
 			pstmt.setInt(6, 1);
+			pstmt.setString(7, bbsFileName);
+			pstmt.setString(8, bbsFilePath);
+			
 			return pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -71,6 +76,7 @@ public class BbsDAO {
 	
 	public ArrayList<Bbs> getList(int pageNumber){
 		String SQL = "SELECT * FROM BBS WHERE bbsID < ? AND bbsAvailable = 1 ORDER BY bbsID DESC LIMIT 10";
+		
 		ArrayList<Bbs> list = new ArrayList<Bbs>();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -84,6 +90,8 @@ public class BbsDAO {
 				bbs.setBbsDate(rs.getString(4));
 				bbs.setBbsContent(rs.getString(5));
 				bbs.setBbsAvailable(rs.getInt(6));
+				bbs.setBbsFileName(rs.getString(7));
+				bbs.setBbsFilePath(rs.getString(8));
 				list.add(bbs);
 			}
 		}catch(Exception e) {
@@ -121,6 +129,8 @@ public class BbsDAO {
 				bbs.setBbsDate(rs.getString(4));
 				bbs.setBbsContent(rs.getString(5));
 				bbs.setBbsAvailable(rs.getInt(6));
+				bbs.setBbsFileName(rs.getString(7));
+				bbs.setBbsFilePath(rs.getString(8));
 				return bbs;
 			}
 		}catch(Exception e) {
@@ -130,6 +140,9 @@ public class BbsDAO {
 	}
 	
 	public int update(int bbsID, String bbsTitle, String bbsContent) {
+		/*
+		String SQL = "UPDATE BBS SET bbsTitle = ?, bbsContent = ? WHERE bbsID = ?";
+		*/
 		String SQL = "UPDATE BBS SET bbsTitle = ?, bbsContent = ? WHERE bbsID = ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);

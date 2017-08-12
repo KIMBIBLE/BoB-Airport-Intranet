@@ -38,7 +38,9 @@ body{
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="main.jsp">메인 페이지</a></li>
+				<li><a href="intro.jsp">공항소개</a></li>
 				<li><a href="bbs.jsp">게시판</a></li>
+				<li><a href="menu.jsp">이번달의 메뉴</a></li>
 			</ul>
 			<%
 				if(userID == null){		
@@ -77,7 +79,7 @@ body{
 			<div class = "container">
 				<h1>BoB Airport</h1>
 				<p></br>BoB AirPort는 최고의 안전과,</br></br> 최고의 동방 항공 허브,</br></br> 최고의 서비스를 제공하며 글로벌 1위 공항으로 발돋움합니다.</br></br></p>
-				<p><a class = "btn btn-primary btn-pull" href="#" role = "button">자세히 알아보기</a></p>
+				<p><a class = "btn btn-primary btn-pull" href="intro.jsp" role = "button">자세히 알아보기</a></p>
 			</div>
 		</div>
 	</div>
@@ -93,15 +95,15 @@ body{
 				<div class="item active">
 					<img src = "images/6.jpg" alt="Los Angeles" style="width:100%;">
 					<div class="carousel-caption">
-						<h3>Los Angeles</h3>
-						<p>LA is always so much fun!</p>
+						<h3>Hong Kong</h3>
+						<p>Hong Kong is always so much fun!</p>
 					</div>	
 				</div>
 				<div class = "item">
 					<img src = "images/7.jpg" alt="Chicago" style="width:100%;">
 					<div class="carousel-caption">
-						<h3>Chicago</h3>
-						<p>Thank you, Chicago!</p>
+						<h3>Japan</h3>
+						<p>Thank you, Japan!</p>
 					</div>
 				</div>
 			</div>

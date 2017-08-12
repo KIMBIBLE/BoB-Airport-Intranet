@@ -44,7 +44,9 @@
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li><a href="main.jsp">메인</a></li>
+				<li><a href="intro.jsp">공항소개</a></li>
 				<li class="active"><a href="bbs.jsp">게시판</a></li>
+				<li><a href="menu.jsp">이번달의 메뉴</a></li>
 			</ul>
 			<%
 				if(userID == null){		
@@ -92,6 +94,7 @@
 				<tbody>
 					<%
 						BbsDAO bbsDAO = new BbsDAO();
+					System.out.println("Sdf");
 						ArrayList<Bbs> list = bbsDAO.getList(pageNumber);
 						for(int i = 0; i < list.size(); i++){
 					%>

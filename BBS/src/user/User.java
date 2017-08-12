@@ -6,6 +6,13 @@ public class User {
 	private String userName;
 	private String userGender;
 	private String userEmail;
+	private String userDepartment;
+	public String getUserDepartment() {
+		return userDepartment;
+	}
+	public void setUserDepartment(String userDepartment) {
+		this.userDepartment = userDepartment;
+	}
 	public String getUserID() {
 		return userID;
 	}
@@ -36,7 +43,5 @@ public class User {
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
 	}
-	
-	
 	
 }

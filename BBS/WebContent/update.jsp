@@ -63,8 +63,10 @@ body{
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li><a href="main.jsp">메인</a></li>
+				<li><a href="main.jsp">메인 페이지</a></li>
+				<li><a href="intro.jsp">공항소개</a></li>
 				<li class="active"><a href="bbs.jsp">게시판</a></li>
+				<li><a href="menu.jsp">이번달의 메뉴</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class = "dropdown">

@@ -11,9 +11,6 @@
 <title>BoB Airport</title>
 </head>
 <style>
-body{
-	background-image:url('images/1.jpg');
-}
 </style>
 <body>
 	<%
@@ -31,12 +28,14 @@ body{
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="main.jsp">JSP 게시판 웹 사이트</a>
+			<a class="navbar-brand" href="main.jsp">BoB Airport 게시판</a>
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li><a href="main.jsp">메인</a></li>
+				<li><a href="main.jsp">메인 페이지</a></li>
+				<li><a href="intro.jsp">공항소개</a></li>
 				<li class="active"><a href="bbs.jsp">게시판</a></li>
+				<li><a href="menu.jsp">이번달의 메뉴</a></li>
 			</ul>
 			<%
 				if(userID == null){		
@@ -72,7 +71,7 @@ body{
 	</nav>
 	<div class = "container">
 		<div class = "row">
-			<form method = "post" action = "writeAction.jsp">
+			<form method = "post" action = "writeAction.jsp" enctype="multipart/form-data">
 				<table class = "table table-striped" style="text-align: center; border:1px solid #dddddd">
 					<thead>
 						<tr>
@@ -89,6 +88,7 @@ body{
 						</tr>
 					</tbody>
 				</table>
+				<input type = "file" name="uploadFile" id="uploadFile">
 				<input type = "submit" class = "btn btn-primary pull-right" value = "글쓰기">
 			</form>
 		</div>

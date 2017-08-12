@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import user.User;
+
 public class UserDAO {
 	private Connection conn;
 	private PreparedStatement pstmt;
@@ -22,12 +24,34 @@ public class UserDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	public User getUser(String userID) {
+		String SQL = "SELECT * FROM USER WHERE userID = ?";
+		try {
+			PreparedStatement psmt = conn.prepareStatement(SQL);
+			psmt.setString(1, userID);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				User user = new User();
+				user.setUserID(rs.getString(1));
+				user.setUserPassword(rs.getString(2));
+				user.setUserName(rs.getString(3));
+				user.setUserGender(rs.getString(4));
+				user.setUserEmail(rs.getString(5));
+				user.setUserDepartment(rs.getString(6));
+				return user;
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 		
 	public int login(String userID, String userPassword) {
-		String SQL = "SELECT userPassword FROM USER WHERE userID = ?";
+		String SQL = "SELECT userPassword FROM USER WHERE userID = '" + userID + "'";
 		try {
 			pstmt = conn.prepareStatement(SQL);
-			pstmt.setString(1, userID);
+			//pstmt.setString(1, userID);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				if(rs.getString(1).equals(userPassword)) {
@@ -44,7 +68,8 @@ public class UserDAO {
 	}
 	
 	public int join(User user){
-		String SQL = "INSERT INTO USER VALUES(?, ?, ?, ?, ?)";
+		String SQL = "INSERT INTO USER VALUES(?, ?, ?, ?, ?, ?, ?)";
+
 		try {
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1,  user.getUserID());
@@ -52,6 +77,7 @@ public class UserDAO {
 			pstmt.setString(3, user.getUserName());
 			pstmt.setString(4, user.getUserGender());
 			pstmt.setString(5, user.getUserEmail());
+			pstmt.setString(7, user.getUserDepartment());
 			return pstmt.executeUpdate();
 		}
 		catch(Exception e) {

@@ -1,8 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.net.URLEncoder"%>
+<%@page import="java.io.File"%>
 <%@ page import = "java.io.PrintWriter" %>
 <%@ page import = "bbs.Bbs" %>
 <%@ page import = "bbs.BbsDAO" %>
+<%@ page import = "user.User" %>
+<%@ page import = "user.UserDAO" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,6 +22,8 @@
 		if(session.getAttribute("userID") != null){
 			userID = (String)session.getAttribute("userID");
 		}
+		User user = new UserDAO().getUser(userID);
+		
 		int bbsID = 0;
 		if(request.getParameter("bbsID") != null){
 			bbsID = Integer.parseInt(request.getParameter("bbsID"));
@@ -40,16 +46,21 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="main.jsp">JSP 게시판 웹 사이트</a>
+			<a class="navbar-brand" href="bbs.jsp">BoB Airport</a>
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li><a href="main.jsp">메인</a></li>
+				<li><a href="intro.jsp">공항소개</a></li>
 				<li class="active"><a href="bbs.jsp">게시판</a></li>
+				<li><a href="menu.jsp">이번달의 메뉴</a></li>
 			</ul>
 			<%
-				if(userID == null){		
+				System.out.println(userID);
+				if(userID == null || userID == ""){
 			%>
+			
+			
 			<ul class="nav navbar-nav navbar-right">
 				<li class = "dropdown">
 					<a href="#" class="dropdown-toggle"
@@ -61,6 +72,7 @@
 					</ul>
 				</li>
 			</ul>
+			
 			<%
 				}else{
 			%>
@@ -101,8 +113,19 @@
 						<td colspan = "2"><%= bbs.getBbsDate().substring(0, 11) + bbs.getBbsDate().substring(11, 13) + "시 " + bbs.getBbsDate().substring(14, 16) + "분 " %></td>
 					</tr>
 					<tr>
+						<td>첨부파일</td>
+						<td colspan = "2">
+							<a href = filedown.jsp?fileName= <%= bbs.getBbsFileName() %>>
+								<%= bbs.getBbsFileName() %>
+							</a>
+						</td>
+						
+					</tr>
+					<tr>
 						<td>내용</td>
-						<td colspan = "2" style = "min-height: 200px; text-align: Left;"><%= bbs.getBbsContent().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>")  %></td>
+						<td colspan = "2" style = "min-height: 200px; text-align: Left;">
+							<%= bbs.getBbsContent().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %>
+						</td>
 					</tr>
 				</tbody>
 			</table>
@@ -115,6 +138,7 @@
 			<%
 				}	
 			%>
+				
 				<input type = "submit" class = "btn btn-primary pull-right" value = "글쓰기">
 		</div>
 	</div>
