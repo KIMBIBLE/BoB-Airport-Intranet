@@ -53,11 +53,13 @@ public class BbsDAO {
 	}
 	
 	public int write(String bbsTitle, String userID, String bbsContent, String bbsFileName, String bbsFilePath) {
-		String SQL = "INSERT INTO BBS VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
-		//String SQL = "INSERT INTO BBS VALUES(" + getNext() + ", " + bbsTitle + ", " + userID + ", " + getDate() + ", " + bbsContent + ", " + 1 + ", " + bbsFileName + ", " + bbsFilePath + ")";
+		//String SQL = "INSERT INTO BBS VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+		String SQL = "INSERT INTO BBS VALUES('" + getNext() + "','" + bbsTitle + "','" + userID + "','" + getDate() + 
+				"','" + bbsContent + "','" + 1 + "','" + bbsFileName + "','" + bbsFilePath + "')";
 		try {
+			System.out.println(SQL);
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			
+			/*
 			pstmt.setInt(1, getNext());
 			pstmt.setString(2, bbsTitle);
 			pstmt.setString(3, userID);
@@ -66,7 +68,7 @@ public class BbsDAO {
 			pstmt.setInt(6, 1);
 			pstmt.setString(7, bbsFileName);
 			pstmt.setString(8, bbsFilePath);
-			
+			*/
 			return pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -116,10 +118,11 @@ public class BbsDAO {
 	}
 	
 	public Bbs getBbs(int bbsID) {
-		String SQL = "SELECT * FROM BBS WHERE bbsID = ?";
+		//String SQL = "SELECT * FROM BBS WHERE bbsID = ?";
+		String SQL = "SELECT * FROM BBS WHERE bbsID = '" + bbsID + "'" ;
 		try {
 			PreparedStatement psmt = conn.prepareStatement(SQL);
-			psmt.setInt(1, bbsID);
+			//psmt.setInt(1, bbsID);
 			rs = psmt.executeQuery();
 			if(rs.next()) {
 				Bbs bbs = new Bbs();
@@ -140,10 +143,10 @@ public class BbsDAO {
 	}
 	
 	public int update(int bbsID, String bbsTitle, String bbsContent) {
-		/*
-		String SQL = "UPDATE BBS SET bbsTitle = ?, bbsContent = ? WHERE bbsID = ?";
-		*/
-		String SQL = "UPDATE BBS SET bbsTitle = ?, bbsContent = ? WHERE bbsID = ?";
+		
+		//String SQL = "UPDATE BBS SET bbsTitle = ?, bbsContent = ? WHERE bbsID = ?";
+		
+		String SQL = "UPDATE BBS SET bbsTitle = '" + bbsTitle + "' ,' bbsContent = '" + bbsContent + "'WHERE bbsID = '" + bbsID + "'";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, bbsTitle);

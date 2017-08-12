@@ -113,10 +113,6 @@
 				bbs.setBbsFileName(uploadFile);
 				bbs.setBbsFilePath(newFileName);
 
-				System.out.println(bbsTitle);
-				System.out.println(bbsContent);
-				System.out.println(uploadFile);
-				System.out.println(newFileName);
 
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -124,12 +120,6 @@
 
 			BbsDAO bbsDAO = new BbsDAO();
 			int result = bbsDAO.write(bbs.getBbsTitle(), userID, bbs.getBbsContent(), bbs.getBbsFileName(), bbs.getBbsFilePath());
-			System.out.println(bbs.getBbsTitle());
-			System.out.println(userID);
-			System.out.println(bbs.getBbsContent());
-			System.out.println(bbs.getBbsFileName());
-			System.out.println(bbs.getBbsFilePath());
-			System.out.println(result);
 			if (result == -1) {
 				PrintWriter script = response.getWriter();
 				script.println("<script>");

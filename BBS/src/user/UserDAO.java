@@ -26,10 +26,11 @@ public class UserDAO {
 	}
 	
 	public User getUser(String userID) {
-		String SQL = "SELECT * FROM USER WHERE userID = ?";
+		//String SQL = "SELECT * FROM USER WHERE userID = ?";
+		String SQL = "SELECT * FROM USER WHERE userID = '" + userID + "'";
 		try {
 			PreparedStatement psmt = conn.prepareStatement(SQL);
-			psmt.setString(1, userID);
+			//psmt.setString(1, userID);
 			rs = psmt.executeQuery();
 			if(rs.next()) {
 				User user = new User();
@@ -38,7 +39,6 @@ public class UserDAO {
 				user.setUserName(rs.getString(3));
 				user.setUserGender(rs.getString(4));
 				user.setUserEmail(rs.getString(5));
-				user.setUserDepartment(rs.getString(6));
 				return user;
 			}
 		}catch(Exception e) {
@@ -68,16 +68,20 @@ public class UserDAO {
 	}
 	
 	public int join(User user){
-		String SQL = "INSERT INTO USER VALUES(?, ?, ?, ?, ?, ?, ?)";
-
+		//String SQL = "INSERT INTO USER VALUES(?, ?, ?, ?, ?)";
+		
+		String SQL = "INSERT INTO USER VALUES('" + user.getUserID() + "','" + user.getUserPassword() + "','" +
+				user.getUserName() + "','" + user.getUserGender() + "','" + user.getUserEmail() + "')";
+		
 		try {
 			pstmt = conn.prepareStatement(SQL);
-			pstmt.setString(1,  user.getUserID());
+			/*
+			pstmt.setString(1, user.getUserID());
 			pstmt.setString(2, user.getUserPassword());
 			pstmt.setString(3, user.getUserName());
 			pstmt.setString(4, user.getUserGender());
 			pstmt.setString(5, user.getUserEmail());
-			pstmt.setString(7, user.getUserDepartment());
+			*/
 			return pstmt.executeUpdate();
 		}
 		catch(Exception e) {

@@ -66,25 +66,12 @@ body{
 									<input type="radio" name="userGender" autocomplete="off" value = "남자" checked>남자
 								</label>
 								<label class = "btn btn-primary">
-									<input type="radio" name="userGender" autocomplete="off" value = "여자" checked>여자
+									<input type="radio" name="userGender" autocomplete="off" value = "여자">여자
 								</label>
 							</div>
 						</div>
 						<div class = "form-group">
 							<input type="email" class="form-control" placeholder="E-mail" name="userEmail" maxlength="20">
-						</div>
-						<div class = "form-group" style="text-align: center;">
-							<select name="department">
-							    <option value="경영본부">경영본부</option>
-							    <option value="여객서비스본부">여객서비스본부</option>
-							    <option value="안전관리본부">안전관리본부</option>
-							    <option value="운항서비스본부">운항서비스본부</option>
-							    <option value="IT인프라처">IT인프라처</option>
-							    <option value="비서실">비서실</option>
-							    <option value="법무팀">법무팀</option>
-							    <option value="홍보팀">홍보팀</option>
-							    <option value="감사팀">감사팀</option>
-							</select>
 						</div>
 						<input type="submit" class="btn btn-primary form-control" value="회원가입">
 					</form>

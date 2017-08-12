@@ -94,7 +94,6 @@
 				<tbody>
 					<%
 						BbsDAO bbsDAO = new BbsDAO();
-					System.out.println("Sdf");
 						ArrayList<Bbs> list = bbsDAO.getList(pageNumber);
 						for(int i = 0; i < list.size(); i++){
 					%>

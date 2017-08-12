@@ -56,7 +56,6 @@
 				<li><a href="menu.jsp">이번달의 메뉴</a></li>
 			</ul>
 			<%
-				System.out.println(userID);
 				if(userID == null || userID == ""){
 			%>
 			
@@ -115,8 +114,8 @@
 					<tr>
 						<td>첨부파일</td>
 						<td colspan = "2">
-							<a href = filedown.jsp?fileName= <%= bbs.getBbsFileName() %>>
-								<%= bbs.getBbsFileName() %>
+							<a href ='filedown.jsp?fileName=<% if(bbs.getBbsFileName() != null && !bbs.getBbsFileName().equals("null")) out.print(bbs.getBbsFileName()); %>'>
+								<%  if(bbs.getBbsFileName() != null && !bbs.getBbsFileName().equals("null")) out.print(bbs.getBbsFileName()); %>
 							</a>
 						</td>
 						
